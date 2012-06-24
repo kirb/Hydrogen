@@ -217,7 +217,8 @@ Public Class formMain
         If My.Application.CommandLineArgs.Count > 0 Then
             Go(My.Application.CommandLineArgs(0))
         End If
-        ieBrowser.Focus()
+        webkitBrowser.Focus()
+        webkitBrowser.UserAgent &= " Safari/533+ Hydrogen/0.1"
     End Sub
 
     Private Sub formMain_Move() Handles Me.Move
@@ -235,45 +236,45 @@ Public Class formMain
         If url.IndexOf("http://") <> 0 And url.IndexOf("https://") <> 0 And url.IndexOf("javascript:") <> 0 And url.IndexOf("file://") <> 0 And url.IndexOf(":") <> 1 Then
             url = "http://" & url
         End If
-        ieBrowser.Url = New Uri(url)
+        webkitBrowser.Navigate(url)
     End Sub
 
     Private Sub textboxAddress_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles textboxAddress.KeyPress
         If e.KeyChar = vbCr Or e.KeyChar = vbLf Or e.KeyChar = vbCrLf Then
             Go(textboxAddress.Text)
-            ieBrowser.Focus()
+            webkitBrowser.Focus()
         End If
     End Sub
 
-    Private Sub ieBrowser_Navigating() Handles ieBrowser.Navigating
-        ieBrowser_LocationChanged()
+    Private Sub webkitBrowser_Navigating() Handles webkitBrowser.Navigating
+        webkitbrowser_LocationChanged()
         progressStatus.Visible = True
     End Sub
 
-    Private Sub ieBrowser_Navigated() Handles ieBrowser.Navigated
-        ieBrowser_LocationChanged()
+    Private Sub webkitBrowser_Navigated() Handles webkitBrowser.Navigated
+        webkitBrowser_LocationChanged()
         progressStatus.Visible = False
     End Sub
 
-    Private Sub ieBrowser_LocationChanged() Handles ieBrowser.LocationChanged
+    Private Sub webkitBrowser_LocationChanged() Handles webkitBrowser.LocationChanged
         Try
-            textboxAddress.Text = ieBrowser.Url.ToString()
+            textboxAddress.Text = webkitBrowser.Url.ToString()
         Catch
         End Try
     End Sub
 
-    Private Sub ieBrowser_DocumentCompleted() Handles ieBrowser.DocumentCompleted
-        ieBrowser_LocationChanged()
+    Private Sub webkitBrowser_DocumentCompleted() Handles webkitBrowser.DocumentCompleted
+        webkitBrowser_LocationChanged()
     End Sub
 
     Private Sub textboxAddress_Enter() Handles textboxAddress.Enter
         textboxAddress.SelectAll()
     End Sub
 
-    'Private Sub ieBrowser_NewWindow(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles ieBrowser.NewWindow
+    'Private Sub webkitBrowser_NewWindow(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles webkitBrowser.NewWindow
     '    Dim info As ProcessStartInfo = New ProcessStartInfo
     '    info.FileName = Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase
-    '    info.Arguments = ieBrowser.Url.ToString() 'XXX: WTF, I can't get the link just clicked? Need to work that out.
+    '    info.Arguments = webkitBrowser.Url.ToString() 'XXX: WTF, I can't get the link just clicked? Need to work that out.
     '    Process.Start(info)
     '    e.Cancel = True
     'End Sub

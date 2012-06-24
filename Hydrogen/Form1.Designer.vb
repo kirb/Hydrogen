@@ -22,36 +22,25 @@ Partial Class formMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.ieBrowser = New System.Windows.Forms.WebBrowser()
         Me.tableMain = New System.Windows.Forms.TableLayoutPanel()
         Me.tableToolbar = New System.Windows.Forms.TableLayoutPanel()
         Me.labelName = New System.Windows.Forms.Label()
         Me.textboxAddress = New System.Windows.Forms.TextBox()
         Me.panelStatus = New System.Windows.Forms.Panel()
         Me.progressStatus = New System.Windows.Forms.ProgressBar()
+        Me.webkitBrowser = New WebKit.WebKitBrowser()
         Me.tableMain.SuspendLayout()
         Me.tableToolbar.SuspendLayout()
         Me.panelStatus.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'ieBrowser
-        '
-        Me.ieBrowser.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ieBrowser.Location = New System.Drawing.Point(0, 26)
-        Me.ieBrowser.Margin = New System.Windows.Forms.Padding(0)
-        Me.ieBrowser.MinimumSize = New System.Drawing.Size(20, 20)
-        Me.ieBrowser.Name = "ieBrowser"
-        Me.ieBrowser.Size = New System.Drawing.Size(882, 478)
-        Me.ieBrowser.TabIndex = 1
-        Me.ieBrowser.Url = New System.Uri("http://google.com", System.UriKind.Absolute)
         '
         'tableMain
         '
         Me.tableMain.ColumnCount = 1
         Me.tableMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.tableMain.Controls.Add(Me.tableToolbar, 0, 0)
-        Me.tableMain.Controls.Add(Me.ieBrowser, 0, 1)
         Me.tableMain.Controls.Add(Me.panelStatus, 0, 2)
+        Me.tableMain.Controls.Add(Me.webkitBrowser, 0, 1)
         Me.tableMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tableMain.Location = New System.Drawing.Point(0, 0)
         Me.tableMain.Margin = New System.Windows.Forms.Padding(0)
@@ -127,6 +116,18 @@ Partial Class formMain
         Me.progressStatus.Style = System.Windows.Forms.ProgressBarStyle.Marquee
         Me.progressStatus.TabIndex = 5
         '
+        'webkitBrowser
+        '
+        Me.webkitBrowser.AllowDrop = True
+        Me.webkitBrowser.BackColor = System.Drawing.Color.White
+        Me.webkitBrowser.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.webkitBrowser.Location = New System.Drawing.Point(0, 26)
+        Me.webkitBrowser.Margin = New System.Windows.Forms.Padding(0)
+        Me.webkitBrowser.Name = "webkitBrowser"
+        Me.webkitBrowser.Size = New System.Drawing.Size(882, 478)
+        Me.webkitBrowser.TabIndex = 4
+        Me.webkitBrowser.Url = New System.Uri("http://google.com", System.UriKind.Absolute)
+        '
         'formMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 17.0!)
@@ -146,11 +147,11 @@ Partial Class formMain
 
     End Sub
     Friend WithEvents tableMain As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents ieBrowser As System.Windows.Forms.WebBrowser
     Friend WithEvents panelStatus As System.Windows.Forms.Panel
     Friend WithEvents progressStatus As System.Windows.Forms.ProgressBar
     Friend WithEvents tableToolbar As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents labelName As System.Windows.Forms.Label
     Friend WithEvents textboxAddress As System.Windows.Forms.TextBox
+    Friend WithEvents webkitBrowser As WebKit.WebKitBrowser
 
 End Class
