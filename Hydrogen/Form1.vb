@@ -271,11 +271,10 @@ Public Class formMain
         textboxAddress.SelectAll()
     End Sub
 
-    'Private Sub webkitBrowser_NewWindow(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles webkitBrowser.NewWindow
-    '    Dim info As ProcessStartInfo = New ProcessStartInfo
-    '    info.FileName = Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase
-    '    info.Arguments = webkitBrowser.Url.ToString() 'XXX: WTF, I can't get the link just clicked? Need to work that out.
-    '    Process.Start(info)
-    '    e.Cancel = True
-    'End Sub
+    Private Sub webkitBrowser_NewWindowRequest(ByVal sender As System.Object, ByVal e As WebKit.NewWindowRequestEventArgs) Handles webkitBrowser.NewWindowRequest
+        Dim info As ProcessStartInfo = New ProcessStartInfo
+        info.FileName = Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase
+        info.Arguments = e.Url
+        Process.Start(info)
+    End Sub
 End Class
