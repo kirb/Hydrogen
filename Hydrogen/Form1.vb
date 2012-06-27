@@ -203,7 +203,7 @@ Public Class formMain
             'Dwm.DwmEnableBlurBehindWindow(Me.Handle, blur)
         Else
             'tableToolbar.SetColumnSpan(textboxAddress, 2)
-            e.Graphics.Clear(Color.FromArgb(&HC2, &HD9, &HF7))
+            'e.Graphics.Clear(Color.FromArgb(&HC2, &HD9, &HF7))
             'labelName.Visible = False
         End If
     End Sub
@@ -275,6 +275,13 @@ Public Class formMain
         Dim info As ProcessStartInfo = New ProcessStartInfo
         info.FileName = Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase
         info.Arguments = e.Url
+        Process.Start(info)
+    End Sub
+
+    Private Sub webkitBrowser_DownloadBegin(ByVal sender As System.Object, ByVal e As WebKit.FileDownloadBeginEventArgs) Handles webkitBrowser.DownloadBegin
+        Dim info As ProcessStartInfo = New ProcessStartInfo
+        info.FileName = Environment.GetEnvironmentVariable("ProgramFiles") & "\Internet Explorer\iexplore.exe"
+        info.Arguments = e.Download.FilePath
         Process.Start(info)
     End Sub
 End Class
